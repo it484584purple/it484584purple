@@ -1,0 +1,92 @@
+$grey: DarkSlateGrey;
+$red: maroon;
+
+body {
+    font-family: Tahoma, Verdana, sans-serif;
+    color: $grey;
+    padding: 0;
+    margin: 0;
+}
+
+.main {
+    font-size: 10pt;
+}
+
+a {
+    text-decoration: underline;
+    background: transparent;
+    font-weight: bold;
+    color: $red;
+}
+
+h1 {
+    border-bottom: 1px solid $grey;
+    font-style: italic;
+    font-size: 150%;
+    color: $red;
+}
+
+.title {
+    border-bottom: 4px solid gold;
+    background-color: orange;
+    font-style: normal;
+    margin: 0 0 1em;
+    color: white;
+    font-size: 2em;
+    padding: 10px;
+}
+
+.movies {
+    border-bottom: 2px solid black;
+    border-collapse: collapse;
+    width: 100%;
+
+    thead {
+        background-color: wheat;
+    }
+
+    tr, th, td {
+        transition: background-color 250ms;
+    }
+
+    tr {
+        &:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.08);
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.16);
+            }
+        }
+        &:nth-child(odd) {
+            background-color: rgba(0, 0, 0, 0.02);
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.12);
+            }
+        }
+    }
+
+    th, td {
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        padding: 6px 12px;
+        text-align: left;
+        
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+    }
+
+    .hilite {
+        background-color: rgba(255, 255, 0, 0.5);
+
+        &:hover {
+            background-color: yellow;
+        }
+    }
+}
+
+.warning {
+    background: rosybrown;
+    margin: 1em 0;
+    padding: 4px;
+}
