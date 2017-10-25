@@ -19,3 +19,6 @@ log
 
 # Ignore node_modules
 node_modules
+
+# Ignore build files
+/app/assets/javascripts/bundle.*

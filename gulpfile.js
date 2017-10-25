@@ -23,5 +23,5 @@ gulp.task('default', function () {
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
     .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('app/assets/typescript/javascripts'));
+    .pipe(gulp.dest('app/assets/javascripts'));
 });
