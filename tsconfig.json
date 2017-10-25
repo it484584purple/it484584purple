@@ -1,0 +1,9 @@
+{
+    "files": [
+        "app/assets/typescript/main.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "target": "es2015"
+    }
+}
