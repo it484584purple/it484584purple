@@ -2,6 +2,8 @@
 
 To get started:
 
+0. `rvm` to install ruby version
+
 0. `gem install bundler`
 
 0. Clone the project from GitHub [it484584](https://github.com/it484584purple/it484584purple) `git clone git@github.com:it484584purple/it484584purple.git`
@@ -13,6 +15,8 @@ To get started:
 0. Run `bundle exec rake db:setup` to create the initial database.
 
 0. Run `rails server -p $PORT -b $IP` to start the app.  Cloud9 will pop up a window showing the URL to visit in your browser to interact with the running app.
+
+0. Install gulp globally. `npm install -g gulp-cli`
 
 0. Install node packages for JavaScript `npm install`.
 
