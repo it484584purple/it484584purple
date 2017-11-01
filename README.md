@@ -13,3 +13,7 @@ To get started:
 0. Run `bundle exec rake db:setup` to create the initial database.
 
 0. Run `rails server -p $PORT -b $IP` to start the app.  Cloud9 will pop up a window showing the URL to visit in your browser to interact with the running app.
+
+0. Install node packages for JavaScript `npm install`.
+
+0. Run gulp command to transpile TypeScript to JavaScript `gulp`.
