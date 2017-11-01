@@ -2,7 +2,7 @@
 
 To get started:
 
-0. `rvm` to install ruby version
+0. `rvm 2.3.1` to install ruby version
 
 0. `gem install bundler`
 
