@@ -113,5 +113,25 @@ function gameBoardMatches(board: iCard[]): number {
     return match;
 }
 
-let match: number = gameBoardMatches(gameBoard);
-console.log(match);
+function generateBoard(): void {
+    let div: HTMLElement = document.getElementById('set-card-app');
+    let i: number = 0;
+    for (i = 0; i < gameBoard.length; i++) {
+        div.innerHTML += `
+            <div>
+                <p>${gameBoard[i].color}</p>
+                <p>${gameBoard[i].count}</p>
+                <p>${gameBoard[i].material}</p>
+                <p>${gameBoard[i].shape}</p>
+            </div>
+        `;
+    }
+
+    let match: number = gameBoardMatches(gameBoard);
+    div.innerHTML += `
+        <h2>Match Count: ${match}</h2>
+    `;
+};
+
+generateBoard();
+
