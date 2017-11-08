@@ -4,9 +4,10 @@
 
 .set-game {
     div {
+        box-sizing: border-box;
         display: inline-block;
-        width: 100px;
-        height: 140px;
+        width: 140px;
+        height: 180px;
         padding: 20px;
         text-align: center;
     }
