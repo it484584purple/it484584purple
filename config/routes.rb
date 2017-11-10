@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'setcardgame' => 'setcardgame#index'
-  get 'setcardgame/index'
+  resources :setcardgame
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
