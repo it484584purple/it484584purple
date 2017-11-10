@@ -1,0 +1,14 @@
+// Place all the styles related to the setcardgame controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.set-game {
+    div {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 140px;
+        height: 180px;
+        padding: 20px;
+        text-align: center;
+    }
+}
