@@ -1,23 +1,33 @@
-# RottenPotatoes demo app: getting started
+# Set Card Game App: Getting Started
 
-To get started:
+## Fork or Clone the project
 
-0. `rvm 2.3.1` to install ruby version
+* Fork the project
 
-0. `gem install bundler`
+    1. Click the `Fork` button from GitHub [it484584](https://github.com/it484584purple/it484584purple)
 
-0. Clone the project from GitHub [it484584](https://github.com/it484584purple/it484584purple) `git clone git@github.com:it484584purple/it484584purple.git`
+* Clone the project
 
-0. Then `cd it484584purple` to change to the app's directory.
+    1. Clone the project from GitHub [it484584](https://github.com/it484584purple/it484584purple) `git clone git@github.com:it484584purple/it484584purple.git`
 
-0. Run the command `bundle install --without production` to make sure all the gems (libraries) used by the app are in place.
+### Pre-Dependencies
 
-0. Run `bundle exec rake db:setup` to create the initial database.
+1. `rvm 2.3.1` to install ruby version
 
-0. Run `rails server -p $PORT -b $IP` to start the app.  Cloud9 will pop up a window showing the URL to visit in your browser to interact with the running app.
+1. `gem install bundler`
 
-0. Install gulp globally. `npm install -g gulp-cli`
+1. Install gulp globally. `npm install -g gulp-cli`
 
-0. Install node packages for JavaScript `npm install`.
+#### To get started:
 
-0. Run gulp command to transpile TypeScript to JavaScript `gulp`.
+1. Then `cd it484584purple` to change to the app's directory.
+
+1. Run the command `bundle install --without production` to make sure all the gems (libraries) used by the app are in place.
+
+1. Run `bundle exec rake db:setup` to create the initial database.
+
+1. Run `rails server -p $PORT -b $IP` to start the app.  Cloud9 will pop up a window showing the URL to visit in your browser to interact with the running app.
+
+1. Install node packages for JavaScript `npm install`.
+
+1. Run gulp command to transpile TypeScript to JavaScript `gulp`.
