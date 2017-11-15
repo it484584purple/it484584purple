@@ -1,4 +1,47 @@
-%h1 Setrules#index
-%p Find me in app/views/setrules/index.html.haml
-
 #set-card-rules.set-rules
+  %h1 Instructions
+  %p
+    The object of the game is to identify a
+    %b SET
+    of 3 cards from 12 cards placed face up on the game table. Each card has four features, which can vary as follows:
+
+  %p
+    %b SHAPE
+  %ul
+    %li Ovals,
+    %li Squiggles,
+    %li or Diamonds
+
+  %p
+    %b COLOR
+  %ul
+    %li Red,
+    %li Purple,
+    %li or Green
+
+  %p
+    %b NUMBER
+  %ul
+    %li One,
+    %li Two,
+    %li or Three
+      
+  %p
+    %b SHADING
+  %ul
+    %li Solid,
+    %li Striped,
+    %li or Outlined
+  
+  %p
+    A
+    %b SET
+    consists of 3 cards in which each of the cards' features, looked at one-by-one, are the
+    %i same
+    on each card, or are
+    %i different
+    on each card. All of the features must separately satisfy this rule. In other words:
+    %i shape
+    must be either the same on all 3 cards, or different on each of the 3 cards;
+    %i color
+    must be either the same on all 3 cards, or different on each of the 3, etc.
