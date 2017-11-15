@@ -31,3 +31,5 @@
 1. Install node packages for JavaScript `npm install`.
 
 1. Run gulp command to transpile TypeScript to JavaScript `gulp`.
+
+1. Open link in browser to interact with it
