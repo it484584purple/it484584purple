@@ -118,7 +118,7 @@ function generateBoard(): void {
     let i: number = 0;
     for (i = 0; i < gameBoard.length; i++) {
         div.innerHTML += `
-            <div>
+            <div class="card">
                 <p>${gameBoard[i].color}</p>
                 <p>${gameBoard[i].count}</p>
                 <p>${gameBoard[i].material}</p>
@@ -135,3 +135,15 @@ function generateBoard(): void {
 
 generateBoard();
 
+function listen(): void {
+    let cards: HTMLCollectionOf<Element> = document.getElementsByClassName('card');
+
+    let i = 0;
+    for (; i < cards.length; i++) {
+        cards[i].addEventListener('click', function() {
+            this.classList.toggle('selected');
+        }, false);
+    }
+}
+
+listen();
