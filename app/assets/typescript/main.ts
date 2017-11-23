@@ -129,7 +129,7 @@ function generateBoard(): void {
 
     let match: number = gameBoardMatches(gameBoard);
     div.innerHTML += `
-        <h2>Match Count: ${match}</h2>
+        <h2>Match Count: <span>${match}</span></h2>
     `;
 };
 
