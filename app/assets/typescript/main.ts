@@ -118,7 +118,7 @@ function generateBoard(): void {
     let i: number = 0;
     for (i = 0; i < gameBoard.length; i++) {
         div.innerHTML += `
-            <div class="card">
+            <div class="card" data-color="${gameBoard[i].color}" data-count="${gameBoard[i].count}" data-material="${gameBoard[i].material}" data-shape="${gameBoard[i].shape}">
                 <p>${gameBoard[i].color}</p>
                 <p>${gameBoard[i].count}</p>
                 <p>${gameBoard[i].material}</p>
@@ -135,14 +135,49 @@ function generateBoard(): void {
 
 generateBoard();
 
+function deselect(): void {
+    let cardSelection: HTMLCollectionOf<Element> = document.getElementsByClassName('card selected');
+    let i: number = 0;
+    for (; i < cardSelection.length; i++) {
+        cardSelection[i].classList.remove('selected');
+    }
+}
+
+function selection(): void {
+    let cardSelection: HTMLCollectionOf<Element> = document.getElementsByClassName('card selected');
+    if (cardSelection.length > 2) {
+        let collection: iCard[] = [];
+        let i: number = 0;
+        for (; i < cardSelection.length; i++) {
+            collection.push({
+                color: cardSelection[i].getAttribute('data-color'),
+                count: cardSelection[i].getAttribute('data-count'),
+                material: cardSelection[i].getAttribute('data-material'),
+                shape: cardSelection[i].getAttribute('data-shape')
+            });
+        }
+        console.log(selectionMatchCheck(collection));
+
+        deselect();
+    }
+}
+
+function select(that: HTMLElement): void {
+    that.classList.toggle('selected');
+}
+
+function listener(): void {
+    select(this);
+
+    selection();
+}
+
 function listen(): void {
     let cards: HTMLCollectionOf<Element> = document.getElementsByClassName('card');
-
     let i = 0;
     for (; i < cards.length; i++) {
-        cards[i].addEventListener('click', function() {
-            this.classList.toggle('selected');
-        }, false);
+        cards[i].removeEventListener('click', listener, false);
+        cards[i].addEventListener('click', listener, false);
     }
 }
 
