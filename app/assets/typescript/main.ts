@@ -5,13 +5,17 @@ import { Material } from './material';
 import { Shape } from './shape';
 import { iCard } from './iGame';
 
-let color: Color = new Color();
-let count: Count = new Count();
-let material: Material = new Material();
-let shape: Shape = new Shape();
+interface getMatchCount {
+    gameCards: HTMLCollectionOf<Element>;
+    match: number;
+}
 
 function createDeck(): iCard[] {
     let deck: iCard[] = [];
+    let color: Color = new Color();
+    let count: Count = new Count();
+    let material: Material = new Material();
+    let shape: Shape = new Shape();
     
     color.color.forEach(
         (color) => {
@@ -43,14 +47,13 @@ function createDeck(): iCard[] {
     return deck;
 }
 
-let deck: iCard[] = createDeck();
-
-function shuffleDeck(deck: iCard[]): iCard[] {
+function shuffleDeck(): iCard[] {
+    let deck: iCard[] = createDeck();
     let currentIndex: number = deck.length;
     let temporary: iCard;
     let randomIndex: number;
 
-    while(currentIndex !== 0) {
+    while( currentIndex !== 0 ) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
 
@@ -62,7 +65,7 @@ function shuffleDeck(deck: iCard[]): iCard[] {
     return deck;
 }
 
-let shuffled: iCard[] = shuffleDeck(deck);
+let shuffled: iCard[] = shuffleDeck();
 
 function selectionMatchCheck(selection: iCard[]): boolean {
     let colorMatch: boolean = false;
@@ -78,31 +81,30 @@ function selectionMatchCheck(selection: iCard[]): boolean {
     return colorMatch && countMatch && materialMatch && shapeMatch;
 }
 
-function setGameBoard(): iCard[] {
+function gameBoard(cards: number): iCard[] {
     let gameBoard: iCard[] = [];
     let gamei: number = 0;
-    let gamec: number = 12;
+    let gamec: number = cards;
 
     for( ; gamei < gamec; gamei++ ) {
         gameBoard.push(shuffled[gamei]);
+        shuffled.splice(0, 1);
     }
 
     return gameBoard;
 }
 
-let gameBoard: iCard[] = setGameBoard();
-
 function gameBoardMatches(board: iCard[]): number {
     let match: number = 0;
     let mc: number = board.length;
     
-    for (let mi0: number = 0; mi0 < mc; mi0++ ) {
+    for ( let mi0: number = 0; mi0 < mc; mi0++ ) {
     
-        for (let mi1: number = mi0 + 1; mi1 < mc; mi1++) {
+        for ( let mi1: number = mi0 + 1; mi1 < mc; mi1++ ) {
     
-            for (let mi2: number = mi1 + 1; mi2 < mc; mi2++) {
+            for ( let mi2: number = mi1 + 1; mi2 < mc; mi2++ ) {
     
-                if (selectionMatchCheck([gameBoard[mi0], gameBoard[mi1], gameBoard[mi2]])) {
+                if ( selectionMatchCheck([board[mi0], board[mi1], board[mi2]]) ) {
                     match++
                 }
     
@@ -111,6 +113,16 @@ function gameBoardMatches(board: iCard[]): number {
     }
 
     return match;
+}
+
+function getMatchCount(): getMatchCount {
+    let gameCards: HTMLCollectionOf<Element> = document.getElementsByClassName('card');
+    let gameCollection = cardCollection(gameCards);
+    let match: number = gameBoardMatches(gameCollection);
+    return {
+        gameCards: gameCards,
+        match: match
+    };
 }
 
 function cardHTML(color: string, count: string, material: string, shape: string): HTMLDivElement {
@@ -131,33 +143,43 @@ function cardHTML(color: string, count: string, material: string, shape: string)
     return div;
 }
 
-function generateBoard(): void {
-    let div: HTMLElement = document.getElementById('set-card-app');
+function gameMatchText(): void {
+    let matchFunction: any = getMatchCount();
+
+    if (matchFunction.match) {
+        let h2: HTMLElement = document.getElementById('set-matches');
+        h2.innerHTML = `
+            Match Count: <span>${matchFunction.match}</span>
+        `;
+
+        listen(matchFunction.gameCards);
+    } else {
+        addToGame();
+    }
+}
+
+function generateBoard(cardData: iCard[]): void {
+    let div: HTMLElement = document.getElementById('set-app');
     let i: number = 0;
-    for (i = 0; i < gameBoard.length; i++) {
-        div.appendChild(cardHTML(gameBoard[i].color, gameBoard[i].count, gameBoard[i].material, gameBoard[i].shape));
+    for ( ; i < cardData.length; i++ ) {
+        div.appendChild(cardHTML(cardData[i].color, cardData[i].count, cardData[i].material, cardData[i].shape));
     }
 
-    let match: number = gameBoardMatches(gameBoard);
-    div.innerHTML += `
-        <h2>Match Count: <span>${match}</span></h2>
-    `;
+    gameMatchText();
 };
-
-generateBoard();
 
 function deselect(): void {
     let cardSelection: HTMLCollectionOf<Element> = document.getElementsByClassName('card selected');
     let i: number = cardSelection.length - 1;
-    for (; i > -1; i--) {
+    for ( ; i > -1; i-- ) {
         cardSelection[i].classList.remove('selected');
     }
 }
 
-function cardCollection(cardSelection: HTMLCollectionOf<Element>): boolean {
+function cardCollection(cardSelection: HTMLCollectionOf<Element>): iCard[] {
     let collection: iCard[] = [];
     let i: number = 0;
-    for (; i < cardSelection.length; i++) {
+    for ( ; i < cardSelection.length; i++ ) {
         collection.push({
             color: cardSelection[i].getAttribute('data-color'),
             count: cardSelection[i].getAttribute('data-count'),
@@ -165,27 +187,31 @@ function cardCollection(cardSelection: HTMLCollectionOf<Element>): boolean {
             shape: cardSelection[i].getAttribute('data-shape')
         });
     }
-    return selectionMatchCheck(collection);
+    return collection;
 }
 
 function removeFromGame(cardSelection: HTMLCollectionOf<Element>): void {
     let i: number = cardSelection.length - 1;
-    for (; i > -1; i--) {
+    for ( ; i > -1; i-- ) {
         cardSelection[i].parentNode.removeChild(cardSelection[i]);
     }
 }
 
 function addToGame(): void {
-    
+    let matchFunction: any = getMatchCount();
+    if ((matchFunction.gameCards.length < 12) || (matchFunction.gameCards.length >= 12 && !matchFunction.match)) {
+        generateBoard(gameBoard(3));
+    }
 }
 
 function selection(): void {
     let cardSelection: HTMLCollectionOf<Element> = document.getElementsByClassName('card selected');
     if (cardSelection.length > 2) {
-        let isSet: boolean = cardCollection(cardSelection);
+        let isSet: boolean = selectionMatchCheck(cardCollection(cardSelection));
 
         if (isSet) {
             removeFromGame(cardSelection);
+            addToGame();
         } else {
             deselect();
         }
@@ -201,13 +227,16 @@ function listener(): void {
     selection();
 }
 
-function listen(): void {
-    let cards: HTMLCollectionOf<Element> = document.getElementsByClassName('card');
+function listen(cards: HTMLCollectionOf<Element>): void {
     let i: number = 0;
-    for (; i < cards.length; i++) {
+    for ( ; i < cards.length; i++ ) {
         cards[i].removeEventListener('click', listener, false);
         cards[i].addEventListener('click', listener, false);
     }
 }
 
-listen();
+function init(): void {
+    generateBoard(gameBoard(12));
+};
+
+init();
