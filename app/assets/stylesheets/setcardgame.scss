@@ -11,4 +11,16 @@
         padding: 20px;
         text-align: center;
     }
+
+    .selected {
+        &::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 8px;
+            border: solid black;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+        }
+    }
 }
