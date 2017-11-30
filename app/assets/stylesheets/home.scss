@@ -1,13 +1,35 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-table {
-    margin:auto;
+.home {
+    margin: auto;
+    max-width: 480px;
+    width: 100%;
+    border-spacing: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
 }
 .button {
-    width:25%; 
-    padding:2em; 
-    font-size:2em; 
-    text-align:center;
-    color:red;
+    display: flex;
+    flex: 1 1 50%;
+    width: 50%;
+    font-size: 1.5em;
+    text-align: center;
+    align-content: stretch;
+
+    a, span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1 1 100%;
+        align-content: center;
+        box-sizing: border-box;
+        color: white;
+        background-color: red;
+        margin: 5px;
+        padding: 16px;
+        border-radius: 6px;
+        border-bottom: 4px solid black;
+    }
 }
