@@ -9,10 +9,9 @@
 
   %body
     %main#main.main
+      %p= link_to "Home", "/"
       - if flash[:notice]
         #notice.notice.message= flash[:notice]
       - elsif flash[:warning]
         #warning.warning.message= flash[:warning]
-
       = render :partial => 'shared/signon'
-
