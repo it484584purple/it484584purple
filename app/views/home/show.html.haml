@@ -1,18 +1,13 @@
-%h1 Home#show
-%p Find me in app/views/home/show.html.haml
-
-%table
-    %tbody
-    %tr
-        %td.button= link_to "Play", "/setcardgame"
-        %td.button= link_to "Rules", "/setrules"
-    %tr
-        %td.button= link_to "Profile", "/account/profile"
-        %td.button
-            %strike Stats
-            (Coming Soon)
-    %tr
-        %td.button= link_to "Settings", "/account/settings"
-        %td.button
-            %strike Friends
-            (Coming Soon)
+.home
+  .button= link_to "Play", "/setcardgame"
+  .button= link_to "Rules", "/setrules"
+  .button= link_to "Profile", "/account/profile"
+  .button= link_to "Settings", "/account/settings"
+  .button
+    %span
+      %strike Stats
+      (Coming Soon)
+  .button
+    %span
+      %strike Friends
+      (Coming Soon)
